@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<properties>
+		<property name="LOG_HOME">../logs/itssh</property>
+	</properties>
+    <appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %p %X{channel}[%c] - %m%n"/>
+        </Console>
+ 		<RollingFile name="ROLLING_DEBUG" fileName="${LOG_HOME}/debug.log"
+		     filePattern="${LOG_HOME}/$${date:yyyy-MM-dd}/debug-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d %p %X{channel}[%c] - %m%n"/>
+		    <Policies>
+		        <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+		        <SizeBasedTriggeringPolicy size="100MB"/>
+		    </Policies>
+		    <DefaultRolloverStrategy max="100"/>
+		</RollingFile>
+ 		<RollingFile name="ROLLING_ERROR" fileName="${LOG_HOME}/error.log"
+		     filePattern="${LOG_HOME}/$${date:yyyy-MM-dd}/error-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d %p %X{channel}[%c] - %m%n"/>
+		    <Policies>
+		        <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+		        <SizeBasedTriggeringPolicy size="100MB"/>
+		    </Policies>
+		    <DefaultRolloverStrategy max="100"/>
+		</RollingFile>
+    </appenders>
+    <loggers>
+        <asyncRoot level="DEBUG">
+            <!-- 控制台输出（DEBUG） -->
+            <appender-ref level="DEBUG" ref="CONSOLE"/>
+        	<!-- 调试日志（DEBUG） -->
+            <appender-ref level="DEBUG" ref="ROLLING_DEBUG"/>
+        	<!-- 异常日志（ERROR） -->
+            <appender-ref level="ERROR" ref="ROLLING_ERROR"/>
+        </asyncRoot>
+		<logger name="org.springframework" level="WARN"/>
+		<logger name="java.sql" level="DEBUG"/>
+    </loggers>
+</configuration>
