@@ -1,5 +1,8 @@
 # Spring-MultipleDataSources
-Spring多数据源 (http://www.itssh.cn/)，Spring默认连接数据库只提供了一个数据源，如果有多个数据源，可以在连接数据源之前动态改变数据源，
+Spring多数据源 (http://www.itssh.cn/) 
+
+简介：
+ Spring默认连接数据库只提供了一个数据源，如果有多个数据源，可以在连接数据源之前动态改变数据源，
 从而实现多数据源效果，本项目中提供了数据源注解接口(@DataSource)使用时在dao层方法里注入数据源自动改变数据源连接,有问题请发邮件：sm0210@qq.com
 
 ## Dao注入数据源
