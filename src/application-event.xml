@@ -10,7 +10,7 @@
 	<!-- aop -->
 	<aop:config proxy-target-class="true">
 		<!-- dao切面 -->
-		<aop:aspect id="daoEventAspect" ref="dataSourceEvent">
+		<aop:aspect id="daoEventAspect" ref="dataSourceEvent" order="0">
 			<!-- dao切入点 -->
 			<aop:pointcut expression="(execution(* cn.itssh..dao.*Dao.*(..)))" id="dao-dataSource-pointcut" />
 			<!-- 前置通知 -->
